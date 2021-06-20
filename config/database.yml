@@ -1,0 +1,23 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: ProjetHard_development
+
+  #
+test:
+  <<: *default
+  database: ProjetHard_test
+
+
+production:
+  <<: *default
+  database: ProjetHard_production
+  username: ProjetHard
+  password: <%= ENV['PROJETHARD_DATABASE_PASSWORD'] %>

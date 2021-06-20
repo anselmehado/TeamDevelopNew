@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tasks</h1><br>
+<table>
+  <tr>
+    <td><label>Task name : <input type="text"></label></td>
+    <td><label>status </label></td>
+    <td><select name = "dropdown">
+               <option value = "started" selected>started</option>
+               <option value = "complete">complete</option>
+               <option value = "not started">not started</option>
+            </select></td>
+    <td><label>deadline </label></td>
+    <td><select name = "dropdown">
+               <option value = "middle" selected>middle</option>
+               <option value = "low">low</option>
+               <option value = "hight">hight</option>
+            </select></td>
+              <td><label for="huey">deadline</label></td>
+            <td><input type="radio" id="deadline" name="drone" value="dewey"></td>
+  </tr>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Content</th>
+      <th>Deadline</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.name %></td>
+        <td><%= task.content %></td>
+        <td><%= task.deadline %></td>
+        <td><%= task.status %></td>
+        <td><%= link_to 'Show', task %></td>
+        <td><%= link_to 'Edit', edit_task_path(task) %></td>
+        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Task', new_task_path %>
