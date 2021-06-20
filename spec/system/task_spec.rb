@@ -11,6 +11,7 @@ RSpec.describe 'Task management function', type: :system do
       end
     end
   end
+  
   describe 'List display function' do
     context 'When transitioning to the list screen' do
       it 'The created task list is displayed' do
@@ -22,7 +23,7 @@ RSpec.describe 'Task management function', type: :system do
        it 'The content of the relevant task is displayed' do
           task = Task.create(name: 'task1', content: 'content1')
          #task = Task.create(:task, name: 'task1', content: 'content1')
-    
+
          visit tasks_path(task)
          expect(page).to have_content 'task1'
        end

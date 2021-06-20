@@ -36,7 +36,6 @@ module ProjetHard
                    controller_specs: false,
                    request_specs: false
 end
-
   end
 
 
