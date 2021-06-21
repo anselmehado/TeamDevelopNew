@@ -31,3 +31,11 @@
 
 en:
   hello: "Hello world"
+  create_article: 'Create an article'
+
+    button:
+      submit: 'Submit'
+      edit: 'Edit'
+      delete: 'Delete'
+      create: 'Create'
+      

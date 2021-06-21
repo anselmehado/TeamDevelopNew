@@ -37,6 +37,7 @@ class TasksController < ApplicationController
     end
   end
 
+  create_article: 'Create an article'
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
     respond_to do |format|
