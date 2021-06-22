@@ -1,5 +1,5 @@
 ja:
-  view:
+  views:
     name: '名前'
     content: 'コンテンツ'
     deadline: '締め切り'
