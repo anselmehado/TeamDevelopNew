@@ -1,5 +1,10 @@
+
 require 'rails_helper'
 
-RSpec.describe Task, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+RSpec.describe Auction, :type => :model do
+  validates :name, presence: true
+  validates :content, presence: true
+  validates :deadline, presence: true
+  validates :status, presence: true
+
 end
