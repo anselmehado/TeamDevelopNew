@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label : t('views.labels.name') %>
     <%= form.text_field :name %>
   </div>
 
@@ -35,3 +35,9 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+
+<th> <%= t('views.labels.name')%></th>
+<th><%= t('views.labels.content')%></th>
+<th><%= t('views.labels.deadline')%></th>
+<th><%= t('views.labels.status')%></th>

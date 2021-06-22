@@ -30,12 +30,15 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
-  create_article: 'Create an article'
+  views:
+    name: 'Name'
+    content: 'Content'
+    deadline: 'Deadline'
+    status: 'Status'
+    task_name: 'Task name'
+    task: 'Task'
 
-    button:
-      submit: 'Submit'
-      edit: 'Edit'
-      delete: 'Delete'
-      create: 'Create'
-      
+  button:
+    show: 'show'
+    edit: 'Edit'
+    destroy: 'デストロイ'
