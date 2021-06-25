@@ -1,21 +1,29 @@
 require 'rails_helper'
-RSpec.describe 'タスク管理機能', type: :system do
-  let!(:task) { FactoryBot.create(:task, title: 'task') }
-  before do
-    # 「一覧画面に遷移した場合」や「タスクが作成日時の降順に並んでいる場合」など、contextが実行されるタイミングで、before内のコードが実行される
-    visit tasks_path
+RSpec.describe 'Task management function', type: :system do
+  describe 'New creation function' do
+    context 'When creating a new task' do
+      it 'Should display created task' do
+        visit new_task_path
+        fill_in 'Name', with: 'Task1'
+        fill_in 'Content', with: 'details'
+        click_button 'Create Task'
+        expect(page).to have_content 'Task was successfully created.'
+      end
+    end
   end
-  describe '一覧表示機能' do
-    context '一覧画面に遷移した場合' do
-      it '作成済みのタスク一覧が表示される'
-        # タスクデータ作成と一覧画面への遷移の記述を移動したため、ここでの記述は不要
-        # step1で実装済みのため省略
+  describe 'List display function' do
+    context 'When transitioning to the list screen' do
+      it 'The created task list is displayed' do
       end
     end
-    context 'タスクが作成日時の降順に並んでいる場合' do
-      it '新しいタスクが一番上に表示される' do
-        # ここに実装する
-      end
-    end
+  end
+  describe 'Detailed display function' do
+     context 'When transitioned to any task details screen' do
+       it 'The content of the relevant task is displayed' do
+         task = Task.create(name: 'task1', content: 'content1')
+         visit tasks_path(task)
+         expect(page).to have_content 'task1'
+       end
+     end
   end
 end

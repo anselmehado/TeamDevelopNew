@@ -34,6 +34,9 @@ group :development, :test do
   # gem  'rspec-rails' ,  '~> 5.0.0'
   gem 'factory_bot_rails'
 
+  #gem 'rspec-rails', '~> 3.8'
+  #gem 'factory_bot_rails'
+
 
 end
 
@@ -44,8 +47,6 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-
-  #gem 'rspec-rails', '~> 3.8'
   gem 'factory_bot_rails'
   gem  'rspec-rails' ,  '~> 5.0.0'
 end
@@ -54,6 +55,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
+
 
 
   gem 'capybara', '>= 2.15'
