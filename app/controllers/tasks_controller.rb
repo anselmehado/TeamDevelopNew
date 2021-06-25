@@ -33,11 +33,11 @@ class TasksController < ApplicationController
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
     end
   end
+  end
 
-  create_article: 'Create an article'
+  #create_article: 'Create an article'
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
     respond_to do |format|

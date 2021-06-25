@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :task do
-    sequence(:name) { |n| "TEST_NAME#{n}"}
-    sequence(:content) { |n| "TEST#{n}content"}
-    sequence(:deadline) { |n| "TEST_NAME#{n}"}
-    sequence(:status) { |n| "TEST#{n}status"}
+    # Veuillez modifier le contenu suivant en fonction du nom de colonne réellement créé
+    name { 'undefined_title' }
+    content { 'undefined_content' }
   end
+
 end

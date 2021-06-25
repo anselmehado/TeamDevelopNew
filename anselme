@@ -1,3 +1,0 @@
-
-
-(model Task, name: string, content:text,deadline:date,status:string) 
