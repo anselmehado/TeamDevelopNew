@@ -29,13 +29,14 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
+
 en:
   hello: "Hello world"
-  create_article: 'Create an article'
 
-    button:
-      submit: 'Submit'
-      edit: 'Edit'
-      delete: 'Delete'
-      create: 'Create'
-      
+
+# en:
+#   button:
+#   submit: 'Submit'
+#   edit: 'Edit'
+#   delete: 'Delete'
+#   create: 'Create'
