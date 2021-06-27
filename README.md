@@ -2,10 +2,10 @@
 
 
 ## Déploiement sur heroku
-  1.heroku create appli
-  2. heroku login
-  3. commenter la version de ruby
-  4. Exécuter bundle install
-  5.git add .
-  6. git commit -am "make it better"
-  7. git push heroku master
+  $heroku create appli
+  $ heroku login
+  $ commenter la version de ruby
+  $ Exécuter bundle install
+  $ git add .
+  $ git commit -am "make it better"
+  $ git push heroku master
