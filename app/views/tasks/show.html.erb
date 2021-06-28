@@ -20,5 +20,8 @@
   <%= @task.status %>
 </p>
 
+<%= link_to "All Tasks", tasks_path %>
+<%= link_to "Tasks sorted by deadline", tasks_path(sort_by: "deadline") %>
+
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>

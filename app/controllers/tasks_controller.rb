@@ -5,6 +5,13 @@ class TasksController < ApplicationController
   def index
     @tasks = Task.all.order(created_at: :desc)
 
+    @tasks = if params[:sort_by] == "deadline"
+        TAsk.order(:deadline)
+      else
+        TAsk.all
+      end
+    end
+
     #users = User.where(name: 'David', occupation: 'Code Artist').order(created_at: :desc)
   end
 
@@ -61,6 +68,27 @@ class TasksController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+#   def search
+#   if params[:deadline]
+#     @tasks = Task.search(params[:deadline])
+#   else
+#     @tasks = Task.all
+#   end
+# end
+
+
+class MoviesController < ApplicationController
+  def index
+    @movies = if params[:sort_by] == "title"
+      Movie.order(:title)
+    else
+      Movie.all
+    end
+  end
+end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
