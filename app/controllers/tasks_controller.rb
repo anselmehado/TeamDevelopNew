@@ -11,17 +11,17 @@ class TasksController < ApplicationController
 
     term = params[:q]
     puts "the term is #{term}"
-    @resultats = Product.search_products(term)
+    @resultats = Task.search_tasks(term)
 
     end
-  end 
+  end
 
 
-    def search
-      term = params[:q]
-      puts "the term is #{term}"
-      @resultats = Product.search_products(term)
-    end
+    # def search
+    #   term = params[:q]
+    #   puts "the term is #{term}"
+    #   @resultats = Task.search_tasks(term)
+    # end
 
     # def search
     #   if params[:search]
@@ -120,4 +120,3 @@ class TasksController < ApplicationController
       params.require(:task).permit(:name, :content, :deadline, :status).merge(status: params[:task][:status].to_i)
 
     end
-end
