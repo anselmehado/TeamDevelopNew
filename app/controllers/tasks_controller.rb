@@ -6,9 +6,9 @@ class TasksController < ApplicationController
     @tasks = Task.all.order(created_at: :desc)
 
     @tasks = if params[:sort_by] == "deadline"
-        TAsk.order(:deadline)
+        Task.order(:deadline)
       else
-        TAsk.all
+        Task.all
       end
     end
 
@@ -100,4 +100,3 @@ end
     def task_params
       params.require(:task).permit(:name, :content, :deadline, :status)
     end
-end
