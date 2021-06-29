@@ -9,12 +9,14 @@ class TasksController < ApplicationController
       Task.order('created_at DESC')
     end
 
-    if params[:research] == ""
-      flash[:danger] =  "No data found"
-      redirect_to tasks_path
-    else
-      @task = Task.where(status: params[:status])
+    @tasks = Task.all
+      if params[:search]
+      @tasks = Task.search(params[:search])
+      else
+      @tasks = Task.all
     end
+
+
 
     end
 

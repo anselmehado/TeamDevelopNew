@@ -4,12 +4,15 @@
 
 
 
-
-
 <table>
   <tr>
-    <td><label><%= t('views.task_name')%>: <input type="text"></label></td>
-      <td><%= link_to 'research by status', tasks_path(research_by: 'true') %></td>
+    <!-- <td><label><%= t('views.task_name')%>: <input type="text"></label></td> -->
+
+    <%= form_tag(tasks_path, :method => "get", id: "search-form") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Search status" %>
+<%= submit_tag "Search" %>
+<% end %>
+      <!-- <td><%= link_to 'research by status', tasks_path(research_by: 'true') %></td>
     <td><label><%= t('views.status')%></label></td>
     <td><select name = "dropdown">
                <option value = "started" selected>started</option>
@@ -24,7 +27,7 @@
                <option value = "hight">hight</option>
             </select></td>
               <td><label for="huey">deadline</label></td>
-            <td><input type="radio" id="deadline" name="drone" value="dewey"></td>
+            <td><input type="radio" id="deadline" name="drone" value="dewey"></td> -->
   </tr>
 </table>
 
