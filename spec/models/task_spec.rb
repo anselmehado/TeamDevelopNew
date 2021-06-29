@@ -1,41 +1,21 @@
 require 'rails_helper'
-
-RSpec.describe Task, type: :model do
-  #pending "add some examples to (or delete) #{__FILE__}"
-
-  describe 'fonction du modele tache', type: :model do
-    describe 'test de validation' do
-      context 'verifier si le titre de tache est vide' do
-        it 'echec de validation' do
-          task = Task.new(title: '', content: 'test de defaillance')
-          expect(task).not_to be_valid
-        end
-      end
-
-  　　context 'les details sont vides' do
-        it 'il est pris dans la validation' do
-        @task.name = ''
-        @task.content = ''
-        @task.deadline = ''
-        @task.status = ''
-        expect(@task.valid?).to eq(false)
-        end
-      end
-      context 'le contenu est décrit dans le titre et les détails de la tâche' do
-        it 'validation passe' do
-
-          expect(@task.valid?).to eq(true)
-        end
+describe 'Task model function', type: :model do
+  describe 'Validation test' do
+    context 'If the task Title is empty' do
+      it 'It's hard to Validation' do
+        task = Task.new(title: '', content: 'Failure test')
+        expect(task).not_to be_valid
       end
     end
-
-
-end
-
-FactoryBot.define do
-  factory :task do
-    #Please change the following contents according to the column name actually created
-    title { 'test_title' }
-    content { 'test_content' }
+　　context 'If the task details are empty' do
+      it 'Validation is caught' do
+        # Write content here
+      end
+    end
+    context 'If the task Title and details are described' do
+      it 'Validation passes' do
+        # Write content here
+      end
+    end
   end
 end
