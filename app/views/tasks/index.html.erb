@@ -9,12 +9,14 @@
 <table>
   <tr>
     <td><label><%= t('views.task_name')%>: <input type="text"></label></td>
+      <td><%= link_to 'research by status', tasks_path(research_by: 'true') %></td>
     <td><label><%= t('views.status')%></label></td>
     <td><select name = "dropdown">
                <option value = "started" selected>started</option>
                <option value = "complete">complete</option>
                <option value = "not started">not started</option>
             </select></td>
+
     <td><label>deadline </label></td>
     <td><select name = "dropdown">
                <option value = "middle" selected>middle</option>
@@ -47,6 +49,8 @@
         <td><%= link_to t('views.button.show'), task %></td>
         <td><%= link_to t('views.button.edit'), edit_task_path(task) %></td>
         <td><%= link_to t('views.button.destroy'), task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'sort by deadline', tasks_path(sort_by: 'true') %></td>
+
       </tr>
     <% end %>
   </tbody>

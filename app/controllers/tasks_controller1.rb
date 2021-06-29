@@ -1,26 +1,53 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
 
-  # GET /tasks or /tasks.json
+  # # GET /tasks or /tasks.json
   def index
-    @tasks = if  params[:sort_by]
-      Task.order('deadline DESC')
+    @tasks = Task.all.order(created_at: :desc)
+
+    @tasks = if params[:sort_by] == "deadline"
+        Task.order(:deadline)
+      else
+        Task.all
+      end
+    end
+  #
+  #   #users = User.where(name: 'David', occupation: 'Code Artist').order(created_at: :desc)
+  # end
+
+  def index
+    #Use params sort_expired + deadline property
+    #to create tri ystem
+    if params[:sort_expired] == "true"
+      @task = Task.all.order(deadline: :asc).page params[:page]
+      #It's date, there a choose order by asc (Old date)
+    #Define Pirority, order by desc
+    elsif params[:sort_priority]
+      #Define function to sort by priority, there i choose order by asc (High => Middle => low)
+      @task = Task.all.order(priority: :asc).page params[:page]
+    elsif params[:name].blank? && params[:status]
+      #This function checks if the name field is empty,
+      #then checks if the status field contains a value.
+      if params[:status] == ""
+        flash[:danger] =  "No data found"
+        redirect_to tasks_path
+      else
+        @task = Task.where(status: params[:status]).page params[:page]
+      end
+    elsif params[:name] && params[:status].blank?
+      #This function checks if the status field is empty,
+      #then checks if the name field contains a value.
+      @task = Task.where(name: params[:name]).page params[:page]
+    elsif params[:name] && params[:status]
+      #This function controls whether the name and status fields contain values
+      @task = Task.where(name: params[:name]).where(status: params[:status]).page params[:page]
     else
-      Task.order('created_at DESC')
+      #@task = Task.all.order(created_at: :desc).page params[:page]
     end
-
-    if params[:research] == ""
-      flash[:danger] =  "No data found"
-      redirect_to tasks_path
-    else
-      @task = Task.where(status: params[:status])
-    end
-
-    end
+  end
+  #
 
 
-
-    #users = User.where(name: 'David', occupation: 'Code Artist').order(created_at: :desc)
 
   # GET /tasks/1 or /tasks/1.json
   def show
@@ -82,17 +109,6 @@ class TasksController < ApplicationController
 #     @tasks = Task.search(params[:deadline])
 #   else
 #     @tasks = Task.all
-#   end
-# end
-
-
-# class MoviesController < ApplicationController
-#   def index
-#     @movies = if params[:sort_by] == "title"
-#       Movie.order(:title)
-#     else
-#       Movie.all
-#     end
 #   end
 # end
 
