@@ -8,7 +8,17 @@
 
 <table>
   <tr>
-    <td><label><%= t('views.task_name')%>: <input type="text"></label></td>
+    <td>
+      <%= form_tag("/search/tasks", method: "get") do %>
+      <%= label_tag(:q, "Search for:") %>
+      <%= text_field_tag(:q) %>
+      <%= submit_tag("Search") %>
+      <% end %>
+
+
+
+
+    </td>
     <td><label><%= t('views.status')%></label></td>
     <td><select name = "dropdown">
                <option value = "started" selected>1</option>
@@ -39,6 +49,8 @@
   </thead>
 
   <tbody>
+
+
     <% @tasks.each do |task| %>
       <tr>
         <td><%= task.name %></td>

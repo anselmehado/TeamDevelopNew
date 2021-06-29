@@ -9,18 +9,27 @@ class TasksController < ApplicationController
       Task.order('created_at DESC')
     end
 
-    @tasks = Task.all
-      if params[:search]
-      @tasks = Task.search(params[:search])
-      else
-      @tasks = Task.all
-    end
-
-
+    term = params[:q]
+    puts "the term is #{term}"
+    @resultats = Product.search_products(term)
 
     end
+  end 
 
 
+    def search
+      term = params[:q]
+      puts "the term is #{term}"
+      @resultats = Product.search_products(term)
+    end
+
+    # def search
+    #   if params[:search]
+    #     @tasks = Task.search(params[:search])
+    #   else
+    #     @tasks = Task.all
+    #   end
+    # end
 
     #users = User.where(name: 'David', occupation: 'Code Artist').order(created_at: :desc)
 
