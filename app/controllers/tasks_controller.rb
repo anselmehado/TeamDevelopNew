@@ -9,6 +9,18 @@ class TasksController < ApplicationController
       Task.order('created_at DESC')
     end
 
+    if params[:search]
+      @tasks = Task.search(params[:search])
+    else
+      @tasks = Task.all
+    end
+
+    if params[:search]
+      @tasks = Task.search_status(params[:search])
+    else
+      @tasks = Task.all
+    end
+
   end
 
 
@@ -18,13 +30,13 @@ class TasksController < ApplicationController
     #   @resultats = Task.search_tasks(term)
     # end
 
-    # def search
-    #   if params[:search]
-    #     @tasks = Task.search(params[:search])
-    #   else
-    #     @tasks = Task.all
-    #   end
-    # end
+    def search
+      if params[:search]
+        @tasks = Task.search(params[:search])
+      else
+        @tasks = Task.all
+      end
+    end
 
     #users = User.where(name: 'David', occupation: 'Code Artist').order(created_at: :desc)
 
@@ -116,4 +128,4 @@ class TasksController < ApplicationController
 
     end
 
-  end 
+  end

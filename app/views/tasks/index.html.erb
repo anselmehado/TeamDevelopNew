@@ -1,23 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= t('views.task')%></h1><br>
-
-
-
+<h1><%= t('views.task General')%></h1><br>
 
 
 <table>
   <tr>
+    <td>  <label> Task name </label></td>
     <td>
 
-
+<%= form_tag(tasks_path, :method => "get", id: "search-form") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Search Tasks" %>
+<%= submit_tag "Search" %>
+<% end %>
 
     </td>
     <td><label><%= t('views.status')%></label></td>
     <td><select name = "dropdown">
-               <option value = "started" selected>1</option>
+               <option value = "inprogress" selected>1</option>
                <option value = "complete">2</option>
-               <option value = "not started">3</option>
+               <option value = "unstarted">0</option>
             </select></td>
 
     <td><label>deadline </label></td>
