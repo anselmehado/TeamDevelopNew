@@ -9,12 +9,6 @@
 <table>
   <tr>
     <td>
-      <%= form_tag("/search/tasks", method: "get") do %>
-      <%= label_tag(:q, "Search for:") %>
-      <%= text_field_tag(:q) %>
-      <%= submit_tag("Search") %>
-      <% end %>
-
 
 
 
@@ -35,7 +29,7 @@
               <td><label for="huey">deadline</label></td>
             <td><input type="radio" id="deadline" name="drone" value="dewey"></td>
   </tr>
-</table>
+</table><br><br><br>
 
 <table>
   <thead>
@@ -49,6 +43,9 @@
   </thead>
 
   <tbody>
+
+
+
 
 
     <% @tasks.each do |task| %>

@@ -9,11 +9,6 @@ class TasksController < ApplicationController
       Task.order('created_at DESC')
     end
 
-    term = params[:q]
-    puts "the term is #{term}"
-    @resultats = Task.search_tasks(term)
-
-    end
   end
 
 
@@ -120,3 +115,5 @@ class TasksController < ApplicationController
       params.require(:task).permit(:name, :content, :deadline, :status).merge(status: params[:task][:status].to_i)
 
     end
+
+  end 

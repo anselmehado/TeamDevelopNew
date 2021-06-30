@@ -8,17 +8,17 @@ class Task < ApplicationRecord
     # where("name LIKE ?", "%#{search}%")
     # end
     #
-    # def self.search(search)
-    # where("status LIKE ?", "%#{search}%")
-    # end
-
-    def self.search_tasks(search_term)
-      if search_term == ""
-        return []
-      else
-        where("name LIKE ?", "%#{search_term}")
-      end
+    def self.search(search)
+    where("status LIKE ?", "%#{search}%")
     end
+
+    # def self.search_tasks(search_term)
+    #   if search_term == ""
+    #     return []
+    #   else
+    #     where("name LIKE ?", "%#{search_term}")
+    #   end
+    # end
 
 
     enum status: {
