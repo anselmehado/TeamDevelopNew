@@ -3,10 +3,14 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = Task.all.order(created_at: :desc)
+    @tasks = if  params[:sort_by]
+      Task.order('deadline DESC')
+    else
+      Task.order('created_at DESC')
+    end
+    end
 
     #users = User.where(name: 'David', occupation: 'Code Artist').order(created_at: :desc)
-  end
 
   # GET /tasks/1 or /tasks/1.json
   def show
@@ -24,6 +28,7 @@ class TasksController < ApplicationController
 
   # POST /tasks or /tasks.json
   def create
+
     @task = Task.new(task_params)
 
     respond_to do |format|
@@ -34,8 +39,10 @@ class TasksController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
+
     end
   end
+
 
   # PATCH/PUT /tasks/1 or /tasks/1.json
   def update
@@ -59,6 +66,27 @@ class TasksController < ApplicationController
     end
   end
 
+
+#   def search
+#   if params[:deadline]
+#     @tasks = Task.search(params[:deadline])
+#   else
+#     @tasks = Task.all
+#   end
+# end
+
+
+class MoviesController < ApplicationController
+  def index
+    @movies = if params[:sort_by] == "title"
+      Movie.order(:title)
+    else
+      Movie.all
+    end
+  end
+end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
@@ -67,6 +95,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:name, :content, :deadline, :status)
+      params.require(:task).permit(:name, :content, :deadline, :status).merge(status: params[:task][:status].to_i)
     end
 end

@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :Name%>
     <%= form.text_field :name %>
   </div>
 
@@ -28,10 +28,16 @@
 
   <div class="field">
     <%= form.label :status %>
-    <%= form.text_field :status %>
+    <%= form.select :status, options_for_select(Task.statuses) %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+
+<th> <%= t('views.labels.name')%></th>
+<th><%= t('views.labels.content')%></th>
+<th><%= t('views.labels.deadline')%></th>
+<th><%= t('views.labels.status')%></th>

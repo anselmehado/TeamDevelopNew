@@ -30,4 +30,15 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  views:
+    name: 'Name'
+    content: 'Content'
+    deadline: 'Deadline'
+    status: 'Status'
+    task_name: 'Task name'
+    task: 'Task'
+
+  button:
+    show: 'show'
+    edit: 'Edit'
+    destroy: 'Destroy'

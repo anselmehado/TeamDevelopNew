@@ -1,0 +1,13 @@
+ja:
+  views:
+    name: '名前'
+    content: 'コンテンツ'
+    deadline: '締め切り'
+    status: 'ステータス'
+
+  button:
+    show: 'ショー'
+    edit: '編集'
+    destroy: '編集編集編集'
+    new_task: 'New Task'
+    back: 'Back'
