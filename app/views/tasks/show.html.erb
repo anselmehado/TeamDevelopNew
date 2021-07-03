@@ -1,25 +1,9 @@
-<p id="notice"><%= notice %></p>
+<h1>Task details</h1>
+<p>Name: <%= @task.name %></p>
+<p>Description: <%= @task.content %></p>
 
-<p>
-  <strong><%= t('views.name')%>:</strong>
-  <%= @task.name %>
-</p>
-
-<p>
-  <strong><%= t('views.content')%>:</strong>
-  <%= @task.content %>
-</p>
-
-<p>
-  <strong><%= t('views.deadline')%> :</strong>
-  <%= @task.deadline %>
-</p>
-
-<p>
-  <strong><%= t('views.status')%>:</strong>
-  <%= @task.status %>
-</p>
-
+<p>Status: <%= @task.status %></p>
+<p>Deadline: <%= @task.deadline %></p>
 
 
 <%= link_to 'Edit', edit_task_path(@task) %> |

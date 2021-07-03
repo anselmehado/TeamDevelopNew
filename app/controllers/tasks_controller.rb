@@ -9,38 +9,20 @@ class TasksController < ApplicationController
       Task.order('created_at DESC')
     end
 
-    if params[:search]
-      @tasks = Task.search(params[:search])
-    else
-      @tasks = Task.all
-    end
+    if params[:task].present?
+      if params[:task][:name].present? && params[:task][:status].present?
+        @tasks = Task.name_fuzzy_search(params[:task][:name]).status_search(params[:task][:status]).page(params[:page]).per(10)
+        elsif params[:task][:name].present?
+        @tasks = Task.name_fuzzy_search(params[:task][:name]).page(params[:page]).per(10)
+        elsif params[:task][:status].present?
+        @tasks = Task.status_search(params[:task][:status]).page(params[:page]).per(10)
+        else
+        @tasks = Task.page(params[:page]).per(10)
+      end
 
-    if params[:search]
-      @tasks = Task.search_status(params[:search])
-    else
-      @tasks = Task.all
     end
-
   end
 
-
-    # def search
-    #   term = params[:q]
-    #   puts "the term is #{term}"
-    #   @resultats = Task.search_tasks(term)
-    # end
-
-    def search
-      if params[:search]
-        @tasks = Task.search(params[:search])
-      else
-        @tasks = Task.all
-      end
-    end
-
-    #users = User.where(name: 'David', occupation: 'Code Artist').order(created_at: :desc)
-
-  # GET /tasks/1 or /tasks/1.json
   def show
 
   end

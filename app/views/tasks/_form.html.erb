@@ -11,35 +11,30 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :Name%>
-    <%= form.text_field :name %>
+  <div class="form">
+    <div class="task_title form-group">
+      <%= form.label :Task_name %>
+      <%= form.text_field :name, id: "task" , class: "form-control"%>
+    </div>
+
+    <div class="task_title form-group">
+      <%= form.label :Content %>
+      <%= form.text_field :content, class: "form-control" %>
+    </div>
+
+
+     <div class="task_title form-group">
+      <%= form.label :Status %>
+      <%= form.select :status, options_for_select([[''],['unstarted'], ['in progress'], ['completed']]), id: "status", class: "form-control"  %>
+    </div>
+
+    <div class="task_title form-group">
+      <%= form.label :Deadline %>
+      <%= form.date_select :deadline, id: "deadline", class: "form-control"%>
+    </div>
+
+    <%= form.submit value:"Register", class: "btn btn-primary submit"%>
   </div>
-
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
-
-  <div class="field">
-    <%= form.label :deadline %>
-    <%= form.date_select :deadline %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-
-
-<% end %>
-
-
-<th> <%= t('views.labels.name')%></th>
-<th><%= t('views.labels.content')%></th>
-<th><%= t('views.labels.deadline')%></th>
-<th><%= t('views.labels.status')%></th>
+  <% end %>
+  <br>
+  <%= link_to "Back to the task list", tasks_path, class: "badge badge-success" %>
