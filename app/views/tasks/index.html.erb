@@ -2,19 +2,19 @@
 <p><%= notice %></p>
 <nav class="navbar navbar-light bg-light">
 <%= form_with url: tasks_path, method: :get, html: {class: "form-inline"} , local: true do |form| %>
-
-<%= form.label :Task %>
-<%= form.text_field :name %>
-<%= form.label :status： %>
-<%= form.select :status, Task.statuses.keys, include_blank: '-' , selected: '-' %>
-<%= form.submit 'Search' %>
+  <%= form.label :task_name, "Task name:" %>
+  <%= form.text_field :task_name, class: "form-control mr-sm-2" %>
+  <%= form.label :status, "Status:" %>
+  <%= form.select :status, options_for_select([[''],['unstarted'], ['in progress'], ['completed']]), class: "form-control mr-sm-2"%>
 
 
+  <%= form.submit value: "search", class: "btn btn-outline-success my-2 my-sm-0", type: "submit" %>
 <% end %>
+
+
 </nav>
 <br>
 
-<%= link_to  t('views.button.new_task'), new_task_path %>
 
 <table class="table table-hover">
   <thead>
@@ -32,8 +32,6 @@
     <td><%= task.content %></td>
     <td><%= task.status %></td>
     <td class="deadline_row"><%= task.deadline %></td>
-    <td><%= link_to "Modifier", edit_task_path(task.id) %></td>
-    <td><%= link_to 'Supprimer', task_path(task.id), method: :delete %></td>
 
 
     <td><%= link_to t('views.button.edit'), edit_task_path(task) %></td>
@@ -46,3 +44,5 @@
 </table>
 
 <br>
+
+<%= link_to 'Create a new task', new_task_path, class: "badge badge-success" %>

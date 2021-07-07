@@ -13,7 +13,7 @@
 
   <div class="form">
     <div class="task_title form-group">
-      <%= form.label :Task_name %>
+      <%= form.label :Name %>
       <%= form.text_field :name, id: "task" , class: "form-control"%>
     </div>
 
@@ -22,11 +22,6 @@
       <%= form.text_field :content, class: "form-control" %>
     </div>
 
-
-     <div class="task_title form-group">
-      <%= form.label :Status %>
-      <%= form.select :status, options_for_select([[''],['unstarted'], ['in progress'], ['completed']]), id: "status", class: "form-control"  %>
-    </div>
 
     <div class="task_title form-group">
       <%= form.label :Deadline %>

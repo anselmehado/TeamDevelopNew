@@ -12,17 +12,22 @@ class TasksController < ApplicationController
     if params[:task].present?
       if params[:task][:name].present? && params[:task][:status].present?
         @tasks = Task.name_fuzzy_search(params[:task][:name]).status_search(params[:task][:status]).page(params[:page]).per(10)
-        elsif params[:task][:name].present?
+      elsif params[:task][:name].present?
         @tasks = Task.name_fuzzy_search(params[:task][:name]).page(params[:page]).per(10)
-        elsif params[:task][:status].present?
+      elsif params[:task][:status].present?
         @tasks = Task.status_search(params[:task][:status]).page(params[:page]).per(10)
-        else
+      else
         @tasks = Task.page(params[:page]).per(10)
       end
+    end 
 
-    end
+
   end
 
+
+    #users = User.where(name: 'David', occupation: 'Code Artist').order(created_at: :desc)
+
+  # GET /tasks/1 or /tasks/1.json
   def show
 
   end
