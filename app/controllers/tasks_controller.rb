@@ -5,10 +5,11 @@ class TasksController < ApplicationController
   def index
     @tasks = if  params[:sort_by]
       Task.order('deadline DESC')
-    else
+
+
       Task.order('created_at DESC')
     end
-
+@tasks = Task.all
     if params[:task].present?
       if params[:task][:name].present? && params[:task][:status].present?
         @tasks = Task.name_fuzzy_search(params[:task][:name]).status_search(params[:task][:status]).page(params[:page]).per(10)
@@ -19,8 +20,7 @@ class TasksController < ApplicationController
       else
         @tasks = Task.page(params[:page]).per(10)
       end
-    end 
-
+    end
 
   end
 
@@ -112,7 +112,5 @@ class TasksController < ApplicationController
     def task_params
       #params.require(:task).permit(:name, :content, :deadline, :status)
       params.require(:task).permit(:name, :content, :deadline, :status).merge(status: params[:task][:status].to_i)
-
     end
-
   end
