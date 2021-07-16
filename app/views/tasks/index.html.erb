@@ -1,20 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= t('views.task')%></h1><br>
-
-
-
+<h1><%= t('views.task General')%></h1><br>
 
 
 <table>
   <tr>
-    <td><label><%= t('views.task_name')%>: <input type="text"></label></td>
+    <td>  <label> Task name </label></td>
+    <td>
+
+<%= form_tag(tasks_path, :method => "get", id: "search-form") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Search Tasks" %>
+<%= submit_tag "Search" %>
+<% end %>
+
+    </td>
     <td><label><%= t('views.status')%></label></td>
     <td><select name = "dropdown">
-               <option value = "started" selected>started</option>
-               <option value = "complete">complete</option>
-               <option value = "not started">not started</option>
+               <option value = "inprogress" selected>1</option>
+               <option value = "complete">2</option>
+               <option value = "unstarted">0</option>
             </select></td>
+
     <td><label>deadline </label></td>
     <td><select name = "dropdown">
                <option value = "middle" selected>middle</option>
@@ -24,7 +30,7 @@
               <td><label for="huey">deadline</label></td>
             <td><input type="radio" id="deadline" name="drone" value="dewey"></td>
   </tr>
-</table>
+</table><br><br><br>
 
 <table>
   <thead>
@@ -38,6 +44,11 @@
   </thead>
 
   <tbody>
+
+
+
+
+
     <% @tasks.each do |task| %>
       <tr>
         <td><%= task.name %></td>
@@ -47,6 +58,8 @@
         <td><%= link_to t('views.button.show'), task %></td>
         <td><%= link_to t('views.button.edit'), edit_task_path(task) %></td>
         <td><%= link_to t('views.button.destroy'), task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'sort by deadline', tasks_path(sort_by: 'true') %></td>
+
       </tr>
     <% end %>
   </tbody>
