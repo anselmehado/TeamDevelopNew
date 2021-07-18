@@ -3,40 +3,27 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = if  params[:sort_by]
-      Task.order('deadline DESC')
+    
+    if params[:task].present?
+      if params[:task][:task_name].present? && params[:task][:status].present?
+        @tasks = Task.task_name_fuzzy_search(params[:task][:task_name]).status_search(params[:task][:status])
+      elsif params[:task][:task_name].present?
+        @tasks = Task.task_name_fuzzy_search(params[:task][:task_name])
+      elsif params[:task][:status].present?
+        @tasks = Task.status_search(params[:task][:status])
+      else
+        @tasks = Task.page(params[:page]).per(10)
+      end
+    elsif params[:sort_by]
+      @tasks = Task.order('deadline DESC')
+    elsif params[:sort_priority]
+      @tasks = current_user.tasks.order(priority: :desc)
     else
       Task.order('created_at DESC')
-    end
-
-    if params[:search]
-      @tasks = Task.search(params[:search])
-    else
       @tasks = Task.all
     end
-
-    if params[:search]
-      @tasks = Task.search_status(params[:search])
-    else
-      @tasks = Task.all
-    end
-
   end
 
-
-    # def search
-    #   term = params[:q]
-    #   puts "the term is #{term}"
-    #   @resultats = Task.search_tasks(term)
-    # end
-
-    def search
-      if params[:search]
-        @tasks = Task.search(params[:search])
-      else
-        @tasks = Task.all
-      end
-    end
 
     #users = User.where(name: 'David', occupation: 'Code Artist').order(created_at: :desc)
 
@@ -124,8 +111,6 @@ class TasksController < ApplicationController
     # Only allow a list of trusted parameters through.
     def task_params
       #params.require(:task).permit(:name, :content, :deadline, :status)
-      params.require(:task).permit(:name, :content, :deadline, :status).merge(status: params[:task][:status].to_i)
-
+      params.require(:task).permit(:task_name, :content, :deadline, :status, :task, :priority).merge(status: params[:task][:status].to_i, priority: params[:task][:priority].to_i)
     end
-
   end
