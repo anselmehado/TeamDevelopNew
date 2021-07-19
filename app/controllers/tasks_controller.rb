@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    
+
     if params[:task].present?
       if params[:task][:task_name].present? && params[:task][:status].present?
         @tasks = Task.task_name_fuzzy_search(params[:task][:task_name]).status_search(params[:task][:status])
@@ -17,12 +17,13 @@ class TasksController < ApplicationController
     elsif params[:sort_by]
       @tasks = Task.order('deadline DESC')
     elsif params[:sort_priority]
-      @tasks = current_user.tasks.order(priority: :desc)
+      @tasks = Task.order('priority DESC')
     else
       Task.order('created_at DESC')
       @tasks = Task.all
     end
   end
+
 
 
     #users = User.where(name: 'David', occupation: 'Code Artist').order(created_at: :desc)

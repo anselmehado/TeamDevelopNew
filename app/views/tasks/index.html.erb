@@ -10,8 +10,10 @@
 <% end %>
 </nav>
 <br>
-<p><%= link_to "sort by end deadline", tasks_path(sort_expired: "true") , value: "dater", class: "badge badge-primary"%>
-<%= link_to 'sort by priority', tasks_path( sort_expired: "true" ), value: "dater", class: "badge badge-primary" %>
+<p>
+<%= link_to 'sort by deadline', tasks_path(sort_by: 'true'), value: "dater", class: "badge badge-primary" %>
+  <%= link_to "sort by end deadline", tasks_path(sort_expired: "true") , value: "dater", class: "badge badge-primary"%>
+<%= link_to 'sort by priority', tasks_path( sort_priority: "true" ), value: "dater", class: "badge badge-primary" %>
 
 </p>
 <table class="table table-hover">
