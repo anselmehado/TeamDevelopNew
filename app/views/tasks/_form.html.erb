@@ -9,6 +9,7 @@
       </ul>
     </div>
   <% end %>
+
  <div class="form">
   <div class="task_title form-group">
     <%= form.label :task_name %>
@@ -22,6 +23,7 @@
   <div class = "task_title form-group">
     <%= form.label :Status %><br>
     <%= form.select :status, options_for_select(Task.statuses), id: "status", class: "form-control" %>
+
   </div>
 
   <div class="task_title form-group">
