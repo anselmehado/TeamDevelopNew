@@ -6,8 +6,9 @@ RSpec.describe 'Task management function', type: :system do
   end
   describe 'New creation function' do
     before(:each) do
-      visit root_path
-    end
+    visit root_path
+  end
+
     context 'When creating a new task' do
       it 'The created task is displayed' do
         visit new_task_path
@@ -25,6 +26,7 @@ RSpec.describe 'Task management function', type: :system do
       end
     end
   end
+
   describe 'List display function' do
     context 'When transitioning to the list screen' do
       it 'The created task list is displayed' do
@@ -99,6 +101,7 @@ RSpec.describe 'Task management function', type: :system do
         expect(page).to have_content search_status
       end
     end
+    
     context 'Title performing fuzzy search of title and status search' do
       it "Narrow down tasks that include search keywords in the Title and exactly match the status" do
         visit tasks_path

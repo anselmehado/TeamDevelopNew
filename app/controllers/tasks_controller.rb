@@ -14,15 +14,19 @@ class TasksController < ApplicationController
         @tasks = Task.status_search(params[:task][:status])
       else
         @tasks = Task.page(params[:page]).per(10)
-      
+
       end
     elsif params[:sort_by]
       @tasks = Task.order('deadline DESC')
+      @tasks = Task.order('task_name').page(params[:page]).per(3)
     elsif params[:sort_priority]
       @tasks = Task.order('priority DESC')
+      @tasks = Task.order('task_name').page(params[:page]).per(3)
     else
       Task.order('created_at DESC')
       @tasks = Task.all
+      @tasks = Task.order('task_name').page(params[:page]).per(3)
+
     end
   end
 
