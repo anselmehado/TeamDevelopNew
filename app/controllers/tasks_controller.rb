@@ -7,12 +7,14 @@ class TasksController < ApplicationController
     if params[:task].present?
       if params[:task][:task_name].present? && params[:task][:status].present?
         @tasks = Task.task_name_fuzzy_search(params[:task][:task_name]).status_search(params[:task][:status])
+
       elsif params[:task][:task_name].present?
         @tasks = Task.task_name_fuzzy_search(params[:task][:task_name])
       elsif params[:task][:status].present?
         @tasks = Task.status_search(params[:task][:status])
       else
         @tasks = Task.page(params[:page]).per(10)
+      
       end
     elsif params[:sort_by]
       @tasks = Task.order('deadline DESC')
