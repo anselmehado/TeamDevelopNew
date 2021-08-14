@@ -1,7 +1,7 @@
 require 'rails_helper'
 RSpec.describe 'Task management function', type: :system do
   before do
-    @task8 = FactoryBot.create(:task)
+    FactoryBot.create(:task)
     FactoryBot.create(:second_task)
   end
   describe 'New creation function' do
@@ -101,7 +101,7 @@ RSpec.describe 'Task management function', type: :system do
         expect(page).to have_content search_status
       end
     end
-    
+
     context 'Title performing fuzzy search of title and status search' do
       it "Narrow down tasks that include search keywords in the Title and exactly match the status" do
         visit tasks_path
