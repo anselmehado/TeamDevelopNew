@@ -9,6 +9,7 @@ RSpec.describe 'Task management function', type: :system do
     before(:each) do
     visit root_path
   end
+  end
 
   context 'When creating a new task' do
   it 'The created task is displayed' do
@@ -35,6 +36,7 @@ end
       expect(page).to have_content 'task'
     end
   end
+end
 
 
   context 'When tasks are arranged in descending order of creation date and time' do
@@ -47,16 +49,7 @@ end
   end
 end
 
-#
-# context 'When tasks are arranged in descending order of creation date and time' do
-#   it 'New task is displayed at the top' do
-#     task1 = FactoryBot.create(:task, task_name: 'task1')
-#     task2 = FactoryBot.create(:task, task_name: 'task2')
-#     visit tasks_path
-#     task_list = all('.task_row')
-#     expect(task_list[0].text).to eq task2.task_name
-#   end
-# end
+
 context 'When tasks are arranged in descending order of deadline date and time' do
   it 'Task with higher deadline is displayed at the top' do
     date0 = DateTime.now.to_date
@@ -81,7 +74,8 @@ context 'When tasks are arranged in descending order of priority' do
     expect(task_list[2].text).to eq task3.priority
   end
 end
-end
+
+
 describe 'Detailed display function' do
  context 'When transitioned to any task details screen' do
    it 'The content of the relevant task is displayed' do
@@ -97,6 +91,8 @@ before do
   FactoryBot.create(:task)
   FactoryBot.create(:second_task)
 end
+end
+
 context 'If you do a fuzzy search by Title' do
   it "Filter by tasks that include search keywords" do
     visit tasks_path
@@ -105,23 +101,24 @@ context 'If you do a fuzzy search by Title' do
     expect(page).to have_content search_task_name
   end
 end
+
 context 'When you search for status' do
   it "Tasks that exactly match the status are narrowed down" do
     visit tasks_path
-    search_status = "unstarted"
+    search_status = "unstated"
     visit tasks_path(status: search_status)
     expect(page).to have_content search_status
   end
 end
+
 context 'Title performing fuzzy search of title and status search' do
   it "Narrow down tasks that include search keywords in the Title and exactly match the status" do
     visit tasks_path
     search_task_name = "Title 2"
-    search_status = "unstarted"
+    search_status = "unstated"
     visit tasks_path(task_name: search_task_name, status: search_status)
     expect(page).to have_content search_task_name
     expect(page).to have_content search_status
   end
 end
-
 end

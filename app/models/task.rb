@@ -1,5 +1,5 @@
 class Task < ApplicationRecord
-    validates :task_name, presence: true
+    validates :task_name, :content, presence: true
 
     enum status: {
     unstated: 0,
@@ -16,5 +16,5 @@ class Task < ApplicationRecord
   scope :task_name_fuzzy_search, ->(params) { where('task_name LIKE ?', "%#{params}%") }
   scope :status_search, ->(params) { where(status: params) }
 
-  paginates_per 2
+  paginates_per 3
 	end
