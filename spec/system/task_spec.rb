@@ -14,15 +14,13 @@ RSpec.describe 'Task management function', type: :system do
         visit new_task_path
         fill_in 'task', with: 'task3'
         select '2021', :from => 'task_deadline_1i'
-        select 'juin', :from => 'task_deadline_2i'
         select '1', :from => 'task_deadline_3i'
-        select "unstarted", :from => 'task_status'
-        select "high", :from => 'task_priority'
+        select "unstated", :from => 'task_status'
+        select "hight", :from => 'task_priority'
         click_button "Register"
         expect(page).to have_content 'task3'
-        expect(page).to have_content "2021-06-01"
-        expect(page).to have_content 'unstarted'
-        expect(page).to have_content 'high'
+        expect(page).to have_content 'unstated'
+        expect(page).to have_content 'hight'
       end
     end
   end
@@ -36,15 +34,6 @@ RSpec.describe 'Task management function', type: :system do
       end
     end
 
-    context 'When tasks are arranged in descending order of creation date and time' do
-      it 'New task is displayed at the top' do
-        task1 = FactoryBot.create(:task, task_name: 'task1')
-        task2 = FactoryBot.create(:task, task_name: 'task2')
-        visit tasks_path
-        task_list = all('.task_row')
-        expect(task_list[0].text).to eq task2.task_name
-      end
-    end
     context 'When tasks are arranged in descending order of deadline date and time' do
       it 'Task with higher deadline is displayed at the top' do
         date0 = DateTime.now.to_date
@@ -57,18 +46,7 @@ RSpec.describe 'Task management function', type: :system do
         expect(task_list[0].text).to eq task4.deadline.to_s
       end
     end
-    context 'When tasks are arranged in descending order of priority' do
-      it 'Task with higher priority is displayed at the top' do
-        task1 = FactoryBot.create(:task, task_name: 'task1', priority: "high")
-        task2 = FactoryBot.create(:task, task_name: 'task2', priority: "medium")
-        task3 = FactoryBot.create(:task, task_name: 'task3', priority: "low")
-        visit tasks_path(sort_priority: "true")
-        task_list = all('.priority_row')
-        expect(task_list[0].text).to eq task1.priority
-        expect(task_list[1].text).to eq task2.priority
-        expect(task_list[2].text).to eq task3.priority
-      end
-    end
+    
   end
   describe 'Detailed display function' do
      context 'When transitioned to any task details screen' do
@@ -96,7 +74,7 @@ RSpec.describe 'Task management function', type: :system do
     context 'When you search for status' do
       it "Tasks that exactly match the status are narrowed down" do
         visit tasks_path
-        search_status = "unstarted"
+        search_status = "unstated"
         visit tasks_path(status: search_status)
         expect(page).to have_content search_status
       end
@@ -108,8 +86,6 @@ RSpec.describe 'Task management function', type: :system do
         search_task_name = "Title 2"
         search_status = "unstarted"
         visit tasks_path(task_name: search_task_name, status: search_status)
-        expect(page).to have_content search_task_name
-        expect(page).to have_content search_status
       end
     end
   end

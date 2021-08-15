@@ -25,7 +25,7 @@ class TasksController < ApplicationController
     else
       Task.order('created_at DESC')
       @tasks = Task.all
-      @tasks = Task.order('task_name').page(params[:page]).per(3)
+      @tasks = Task.order('task_name').page(params[:page]).per(2)
 
     end
   end

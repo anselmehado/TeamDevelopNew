@@ -17,5 +17,5 @@ class Task < ApplicationRecord
   scope :status_search, ->(params) { where(status: params) }
 
   #paginates_per 5
-  paginates_per 5
+  paginates_per 2
 	end
