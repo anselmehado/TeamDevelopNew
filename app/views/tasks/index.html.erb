@@ -40,13 +40,16 @@
     <td><%= link_to t('views.button.destroy'),  task, method: :delete, data: { confirm: 'Are you sure?' },  :class => "btn btn-danger col-2"  %></td>
     <td><%= link_to 'Details', task_path(task.id),  :class => "btn btn-success col-2" %></td>
 
+
+
   </tr>
 <% end %>
+
 </tbody>
-
 </table>
+
+
+
 <br>
-
-
 
 <%= link_to 'Create a new task', new_task_path, class: "badge badge-success" %>

@@ -12,7 +12,7 @@ FactoryBot.define do
     task_name { 'Title 2' }
     content { 'undefined' }
     deadline { '2020/12/02' }
-    status { 'unstated:' }
+    status { 'unstated' }
 
   end
 end

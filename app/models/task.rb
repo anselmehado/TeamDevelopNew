@@ -1,5 +1,5 @@
 class Task < ApplicationRecord
-    validates :task_name, :content, presence: true
+    validates :task_name, :content, :status, presence: true
 
     enum status: {
     unstated: 0,
