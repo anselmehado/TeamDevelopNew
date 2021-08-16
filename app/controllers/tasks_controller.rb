@@ -1,3 +1,4 @@
+
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
 
@@ -6,12 +7,12 @@ class TasksController < ApplicationController
 
     if params[:task].present?
       if params[:task][:task_name].present? && params[:task][:status].present?
-        @tasks = Task.task_name_fuzzy_search(params[:task][:task_name]).status_search(params[:task][:status])
+        @tasks = Task.task_name_fuzzy_search(params[:task][:task_name]).status_search(params[:task][:status]).page(params[:page]).per(10)
 
       elsif params[:task][:task_name].present?
-        @tasks = Task.task_name_fuzzy_search(params[:task][:task_name])
+        @tasks = Task.task_name_fuzzy_search(params[:task][:task_name]).page(params[:page]).per(10)
       elsif params[:task][:status].present?
-        @tasks = Task.status_search(params[:task][:status])
+        @tasks = Task.status_search(params[:task][:status]).page(params[:page]).per(10)
       else
         @tasks = Task.page(params[:page]).per(10)
 
