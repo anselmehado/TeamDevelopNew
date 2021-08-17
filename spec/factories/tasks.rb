@@ -1,8 +1,17 @@
+
+
 FactoryBot.define do
   factory :task do
-    sequence(:name) { |n| "TEST_NAME#{n}"}
-    sequence(:content) { |n| "TEST#{n}content"}
-    sequence(:deadline) { |n| "TEST_NAME#{n}"}
-    sequence(:status) { |n| "TEST#{n}status"}
+    task_name { 'Title 1' }
+    content { 'undefined1' }
+    deadline  { '2020/12/01' }
+    status { 'complete' }
+  end
+
+  factory :second_task, class: Task do
+    task_name { 'Title 2' }
+    content { 'undefined2' }
+    deadline { '2020/12/02' }
+    status { 'unstated' }
   end
 end

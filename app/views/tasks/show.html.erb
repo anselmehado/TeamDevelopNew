@@ -1,24 +1,11 @@
-<p id="notice"><%= notice %></p>
+<h1>Task details</h1>
+<p>Name: <%= @task.task_name %></p>
+<p>Description: <%= @task.content %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @task.name %>
-</p>
+<p>Status: <%= @task.status %></p>
+<p>Status: <%= @task.priority %></p>
+<p>Deadline: <%= @task.deadline %></p>
 
-<p>
-  <strong>Content:</strong>
-  <%= @task.content %>
-</p>
-
-<p>
-  <strong>Deadline:</strong>
-  <%= @task.deadline %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @task.status %>
-</p>
 
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>

@@ -1,36 +1,53 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
 
-  # GET /tasks or /tasks.json
+  # # GET /tasks or /tasks.json
   def index
+    @tasks = Task.all.order(created_at: :desc)
 
-    if params[:task].present?
-      if params[:task][:task_name].present? && params[:task][:status].present?
-        @tasks = Task.task_name_fuzzy_search(params[:task][:task_name]).status_search(params[:task][:status])
-      elsif params[:task][:task_name].present?
-        @tasks = Task.task_name_fuzzy_search(params[:task][:task_name])
-      elsif params[:task][:status].present?
-        @tasks = Task.status_search(params[:task][:status])
-
+    @tasks = if params[:sort_by] == "deadline"
+        Task.order(:deadline)
       else
-        @tasks = Task.page(params[:page]).per(10)
+        Task.all
       end
-    elsif params[:sort_by]
-      @tasks = Task.order('deadline DESC')
-      #@tasks = Task.order('task_name').page(params[:page]).per(3)
+    end
+  #
+  #   #users = User.where(name: 'David', occupation: 'Code Artist').order(created_at: :desc)
+  # end
+
+  def index
+    #Use params sort_expired + deadline property
+    #to create tri ystem
+    if params[:sort_expired] == "true"
+      @task = Task.all.order(deadline: :asc).page params[:page]
+      #It's date, there a choose order by asc (Old date)
+    #Define Pirority, order by desc
     elsif params[:sort_priority]
-      @tasks = Task.order('priority DESC')
-      #@tasks = Task.order('task_name').page(params[:page]).per(3)
+      #Define function to sort by priority, there i choose order by asc (High => Middle => low)
+      @task = Task.all.order(priority: :asc).page params[:page]
+    elsif params[:name].blank? && params[:status]
+      #This function checks if the name field is empty,
+      #then checks if the status field contains a value.
+      if params[:status] == ""
+        flash[:danger] =  "No data found"
+        redirect_to tasks_path
+      else
+        @task = Task.where(status: params[:status]).page params[:page]
+      end
+    elsif params[:name] && params[:status].blank?
+      #This function checks if the status field is empty,
+      #then checks if the name field contains a value.
+      @task = Task.where(name: params[:name]).page params[:page]
+    elsif params[:name] && params[:status]
+      #This function controls whether the name and status fields contain values
+      @task = Task.where(name: params[:name]).where(status: params[:status]).page params[:page]
     else
-      Task.order('created_at DESC')
-      @tasks = Task.all
-     @tasks = Task.order('task_name').page(params[:page]).per(3)
+      #@task = Task.all.order(created_at: :desc).page params[:page]
     end
   end
+  #
 
 
-
-    #users = User.where(name: 'David', occupation: 'Code Artist').order(created_at: :desc)
 
   # GET /tasks/1 or /tasks/1.json
   def show
@@ -96,17 +113,6 @@ class TasksController < ApplicationController
 # end
 
 
-# class MoviesController < ApplicationController
-#   def index
-#     @movies = if params[:sort_by] == "title"
-#       Movie.order(:title)
-#     else
-#       Movie.all
-#     end
-#   end
-# end
-
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
@@ -115,7 +121,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      #params.require(:task).permit(:name, :content, :deadline, :status)
-      params.require(:task).permit(:task_name, :content, :deadline, :status, :task, :priority).merge(status: params[:task][:status].to_i, priority: params[:task][:priority].to_i)
+      params.require(:task).permit(:name, :content, :deadline, :status)
     end
-  end
+end

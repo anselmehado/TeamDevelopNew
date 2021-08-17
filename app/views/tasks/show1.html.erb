@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong><%= t('views.name')%>:</strong>
+  <%= @task.name %>
+</p>
+
+<p>
+  <strong><%= t('views.content')%>:</strong>
+  <%= @task.content %>
+</p>
+
+<p>
+  <strong><%= t('views.deadline')%> :</strong>
+  <%= @task.deadline %>
+</p>
+
+<p>
+  <strong><%= t('views.status')%>:</strong>
+  <%= @task.status %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>

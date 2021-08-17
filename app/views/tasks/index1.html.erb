@@ -1,0 +1,72 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= t('views.task General')%></h1><br>
+
+
+<table>
+  <tr>
+    <td>  <label> Task name </label></td>
+    <td>
+
+<%= form_tag(tasks_path, :method => "get", id: "search-form") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Search Tasks" %>
+<%= submit_tag "Search" %>
+<% end %>
+
+    </td>
+    <td><label><%= t('views.status')%></label></td>
+    <td><select name = "dropdown">
+               <option value = "inprogress" selected>1</option>
+               <option value = "complete">2</option>
+               <option value = "unstarted">0</option>
+            </select></td>
+
+    <td><label>deadline </label></td>
+    <td><select name = "dropdown">
+               <option value = "middle" selected>middle</option>
+               <option value = "low">low</option>
+               <option value = "hight">hight</option>
+            </select></td>
+              <td><label for="huey">deadline</label></td>
+            <td><input type="radio" id="deadline" name="drone" value="dewey"></td>
+  </tr>
+</table><br><br><br>
+
+<table>
+  <thead>
+    <tr>
+      <th> <%= t('views.name')%></th>
+      <th><%= t('views.content')%></th>
+      <th><%= t('views.deadline')%></th>
+      <th><%= t('views.status')%></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+
+
+
+
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.name %></td>
+        <td><%= task.content %></td>
+        <td><%= task.deadline %></td>
+        <td><%= task.status %></td>
+        <td><%= link_to t('views.button.show'), task %></td>
+        <td><%= link_to t('views.button.edit'), edit_task_path(task) %></td>
+        <td><%= link_to t('views.button.destroy'), task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'sort by deadline', tasks_path(sort_by: 'true') %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<p><%= link_to "sort by end deadline", tasks_path(sort_expired: "true") , value: "dater", class: "badge badge-primary"%> </p>||
+<%= link_to  t('views.button.new_task'), new_task_path %>
+
+<%= link_to 'Create a new task', new_task_path, class: "badge badge-success" %>
