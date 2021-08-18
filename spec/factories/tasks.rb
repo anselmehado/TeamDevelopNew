@@ -13,5 +13,6 @@ FactoryBot.define do
     content { 'undefined2' }
     deadline { '2020/12/02' }
     status { 'unstated' }
+    association :user
   end
 end

@@ -21,7 +21,7 @@ RSpec.describe 'User management function', type: :system do
   end
   describe 'Testing session functionality' do
     before do
-      @user = FactoryBot.create(:user1)
+      @user1 = FactoryBot.create(:user1)
       @user2 = FactoryBot.create(:user2)
     end
     context 'When user tries login' do
@@ -66,7 +66,7 @@ RSpec.describe 'User management function', type: :system do
   end
   describe 'Admin screen test function' do
     before do
-      @user = FactoryBot.create(:user)
+      @user1 = FactoryBot.create(:user1)
       @user2 = FactoryBot.create(:user2)
       @admin = FactoryBot.create(:admin)
     end
