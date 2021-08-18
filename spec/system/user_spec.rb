@@ -4,8 +4,8 @@ RSpec.describe 'User management function', type: :system do
     context 'When creating a new user' do
       it 'User is registered' do
         visit new_user_path
-        fill_in 'name', with: 'user 1'
-        fill_in 'email', with: 'user1@dive.l'
+        fill_in 'name', with: 'user1'
+        fill_in 'email', with: 'user1@yahoo.com'
         fill_in 'password', with: '123456'
         fill_in 'password_confirmation', with: '123456'
         click_button "Register"
@@ -21,8 +21,8 @@ RSpec.describe 'User management function', type: :system do
   end
   describe 'Testing session functionality' do
     before do
-      @user = FactoryBot.create(:user 1)
-      @user2 = FactoryBot.create(:user 2)
+      @user = FactoryBot.create(:user1)
+      @user2 = FactoryBot.create(:user2)
     end
     context 'When user tries login' do
       it 'Login is a success' do
