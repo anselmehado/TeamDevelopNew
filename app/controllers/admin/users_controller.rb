@@ -61,7 +61,7 @@ class Admin::UsersController < ApplicationController
 
 	def is_admin
 		if current_user.admin == false || current_user.admin.blank?
-			redirect_to tasks_path, notice:"Only administrators can access this page!!"
+			redirect_to tasks_path, notice:"This page is for administrators thank you for understanding !!"
 		end
 	end
 end

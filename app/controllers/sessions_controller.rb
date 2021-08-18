@@ -1,7 +1,3 @@
-# class SessionsController < ApplicationController
-#   def new
-#   end
-# end
 
 class SessionsController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]

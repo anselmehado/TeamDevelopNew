@@ -18,9 +18,9 @@ class Task < ApplicationRecord
 
   scope :user_task_list, -> (query) {where(user_id: query)}
 
-def user_task_list(query)
-  where(user_id: query)
-end
+    def user_task_list(query)
+      where(user_id: query)
+    end
 
   paginates_per 3
 
