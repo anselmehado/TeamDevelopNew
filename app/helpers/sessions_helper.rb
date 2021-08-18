@@ -1,5 +1,3 @@
-# module SessionsHelper
-# end
 
 module SessionsHelper
   def current_user

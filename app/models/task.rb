@@ -17,6 +17,7 @@ class Task < ApplicationRecord
   scope :status_search, ->(params) { where(status: params) }
 
   scope :user_task_list, -> (query) {where(user_id: query)}
+
 def user_task_list(query)
   where(user_id: query)
 end
