@@ -1,6 +1,5 @@
 <h1>Admin creates a user</h1>
 
-
 <div class="form">
   <%= form_with(model: @user, local: true, url: admin_users_path) do |f| %>
     <% if @user.errors.any? %>
