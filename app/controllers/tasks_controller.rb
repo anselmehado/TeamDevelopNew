@@ -13,7 +13,7 @@ class TasksController < ApplicationController
         @tasks = all_tasks.status_search(params[:task][:status])
 
       else
-        @tasks = all_tasks.page(params[:page]).per(10)
+        @tasks = all_tasks.page(params[:page]).per(2)
       end
     elsif params[:sort_by]
       @tasks = all_tasks.order('deadline DESC')
