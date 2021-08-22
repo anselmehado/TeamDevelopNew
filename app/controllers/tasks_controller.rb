@@ -6,24 +6,24 @@ class TasksController < ApplicationController
   all_tasks = Task.user_task_list(current_user.id)
     if params[:task].present?
       if params[:task][:task_name].present? && params[:task][:status].present?
-        @tasks = all_tasks.task_name_fuzzy_search(params[:task][:task_name]).status_search(params[:task][:status])
+        @tasks = all_tasks.task_name_fuzzy_search(params[:task][:task_name]).status_search(params[:task][:status]).page params[:page]
       elsif params[:task][:task_name].present?
-        @tasks = all_tasks.task_name_fuzzy_search(params[:task][:task_name])
+        @tasks = all_tasks.task_name_fuzzy_search(params[:task][:task_name]).page params[:page]
       elsif params[:task][:status].present?
-        @tasks = all_tasks.status_search(params[:task][:status])
+        @tasks = all_tasks.status_search(params[:task][:status]).page params[:page]
 
       else
-        @tasks = all_tasks.page(params[:page]).per(2)
+        @tasks = all_tasks.page(params[:page]).per(10)
       end
     elsif params[:sort_by]
-      @tasks = all_tasks.order('deadline DESC')
+      @tasks = all_tasks.order('deadline DESC').page params[:page]
       #@tasks = Task.order('task_name').page(params[:page]).per(3)
     elsif params[:sort_priority]
-      @tasks = all_tasks.order('priority DESC')
+      @tasks = all_tasks.order('priority DESC').page params[:page]
       #@tasks = Task.order('task_name').page(params[:page]).per(3)
     else
       all_tasks.order('created_at DESC')
-      @tasks = all_tasks.all
+      @tasks = all_tasks.all.page params[:page]
      @tasks = all_tasks.order('task_name').page(params[:page]).per(3)
     end
   end

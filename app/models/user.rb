@@ -6,4 +6,12 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
   has_many :tasks, dependent: :destroy
+
+
+  enum user: {
+  user_simple: 0,
+  user_admin: 1,
+}
+
+
 end
