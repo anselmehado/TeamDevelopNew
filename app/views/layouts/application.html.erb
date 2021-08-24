@@ -16,7 +16,7 @@
       <% if logged_in? %>
         <div class="menu">
         <i class="fas fa-home"></i> <%= link_to "Home", tasks_path,  class: "link" %> |
-        
+
 
         <%= link_to 'Change profil', edit_user_path(current_user.id), class: "link" %> |
         <%= link_to 'My page', user_path(current_user.id), class: "link" %> |
@@ -27,7 +27,7 @@
       </div>
       <% end %>
       <% if logged_in? && current_user.admin == true  %>
-        <%= link_to 'Gestion des tasks', admin_users_path, class: "link" %> |
+        <%= link_to 'Gestion des tasks', admin_users_path, class: "link" %> 
 
       <% end %>
     </div>
