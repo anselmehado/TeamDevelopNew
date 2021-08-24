@@ -8,10 +8,10 @@ class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
 
 
-  enum user: {
-  user_simple: 0,
-  user_admin: 1,
-}
+#   enum user: {
+#   user_simple: 0,
+#   user_admin: 1,
+# }
 
 
 end
