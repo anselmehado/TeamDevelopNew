@@ -26,7 +26,7 @@
         <%= link_to "Login", new_session_path %>
       </div>
       <% end %>
-      <% if logged_in? && current_user.admin =='true'  %>
+      <% if logged_in? && current_user.admin == true  %>
         <%= link_to 'Gestion des tasks', admin_users_path, class: "link" %> |
 
       <% end %>

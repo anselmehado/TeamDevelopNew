@@ -23,9 +23,17 @@ User.create(
     [name: "jonas",
     email: "jonas@yahoo.com",
     password_digest: "JETroot1982",
-    password_confirmation: "JETroot1982",
+    # password_confirmation: "JETroot1982",
 		admin: true]
 )
+
+# 
+# User.create(
+#     [name: "jonas",
+#     email: "jonas@yahoo.com",
+#     password: "JETroot1982",
+# 		admin: true]
+# )
 
 
 
