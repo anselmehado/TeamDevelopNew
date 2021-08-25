@@ -18,11 +18,31 @@ FactoryBot.define do
     password { "123456" }
     admin { false }
   end
+#
+#   factory :admin, class: User do
+#     name { "User admin" }
+#     email { "admin2@yahoo.com" }
+#     password { "123456" }
+#     admin { true }
+#   end
+# end
+
+
+
+
 
   factory :admin, class: User do
-    name { "User admin" }
-    email { "admin2@yahoo.com" }
+    name { "anselme" }
+    email { "anselme@yahoo.fr" }
     password { "123456" }
     admin { true }
   end
 end
+
+
+# factory :admin, class: User do
+#   name { "anselme" }
+#   email { "anselme@yahoo.fr" }
+#   password { "123456" }
+#   admin { true }
+# end
