@@ -13,23 +13,33 @@
   <body>
 
     <div>
-      <div>
       <% if logged_in? %>
         <div class="menu">
         <i class="fas fa-home"></i> <%= link_to "Home", tasks_path,  class: "link" %> |
-        <%= link_to 'New task', new_task_path, class: "link" %> |
+
         <%= link_to 'Change profil', edit_user_path(current_user.id), class: "link" %> |
         <%= link_to 'My page', user_path(current_user.id), class: "link" %> |
-        <%= link_to "Logout", session_path(current_user.id), method: :delete %>
+        <%= link_to "Logout", session_path(current_user.id), method: :delete %> |
       <% else %>
         <%= link_to "Sign up", new_user_path %> |
         <%= link_to "Login", new_session_path %>
       </div>
       <% end %>
-</div>
+      <% if logged_in? && current_user.admin == true  %>
+
+        <%= link_to 'Gestion des tasks', root_admin_users_path, class: "link" %>
+        | <%= link_to 'New task', new_task_path, class: "link" %>
+        | <%= link_to 'New user', new_user_path, class: "link" %>
+
+      <% else %>
+
+     <%= link_to 'tasks', tasks_path, class: "link" %>
+
+     	redirect_to admin_users_path
 
 
 
+      <% end %>
     </div>
 
   <%= yield%>
