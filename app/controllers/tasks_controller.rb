@@ -8,18 +8,18 @@ class TasksController < ApplicationController
       if params[:task][:task_name].present? && params[:task][:status].present?
         @tasks = Task.task_name_fuzzy_search(params[:task][:task_name]).status_search(params[:task][:status])
       elsif params[:task][:task_name].present?
-        @tasks = Task.task_name_fuzzy_search(params[:task][:task_name])
+        @tasks = Task.task_name_fuzzy_search(params[:task][:task_name]).page(params[:page])
       elsif params[:task][:status].present?
-        @tasks = Task.status_search(params[:task][:status])
+        @tasks = Task.status_search(params[:task][:status]).page(params[:page])
 
       else
         @tasks = Task.page(params[:page]).per(10)
       end
     elsif params[:sort_by]
-      @tasks = Task.order('deadline DESC')
+      @tasks = Task.order('deadline DESC').page(params[:page])
       #@tasks = Task.order('task_name').page(params[:page]).per(3)
     elsif params[:sort_priority]
-      @tasks = Task.order('priority DESC')
+      @tasks = Task.order('priority DESC').page(params[:page])
       #@tasks = Task.order('task_name').page(params[:page]).per(3)
     else
       Task.order('created_at DESC')
