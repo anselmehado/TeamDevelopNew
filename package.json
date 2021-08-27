@@ -2,6 +2,7 @@
   "name": "ProjetHard",
   "private": true,
   "dependencies": {
+    "boostrap": "^2.0.0",
     "bootstrap": "3",
     "jquery": "^3.6.0"
   }
