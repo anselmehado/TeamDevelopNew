@@ -22,6 +22,12 @@ class Task < ApplicationRecord
       where(user_id: query)
     end
 
+
+
+    scope :label_task_search, -> (query) {
+		@ids = Labelling.where(label_id: query).pluck(:task_id)
+		where(id: @ids)}
+
   paginates_per 3
 
   belongs_to :user

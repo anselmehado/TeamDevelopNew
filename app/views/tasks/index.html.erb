@@ -5,7 +5,11 @@
   <%= form.label :Name： %>
   <%= form.text_field :task_name %>
   <%= form.label :Status： %>
-  <%= form.select :status, Task.statuses.keys, include_blank: '-' , selected: '-' %>
+  <%= form.select :status, Task.statuses.keys, include_blank: '-' , selected: '-' %><br>
+
+  <%= form.label :label_id, "Only Label search:" %>
+  <%= form.select :label_id, Label.all.collect { |l| [ l.title, l.id ] }, include_blank: true %><br>
+
   <%= form.submit 'search' %>
 <% end %>
 </nav>
