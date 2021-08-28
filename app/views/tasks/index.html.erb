@@ -2,8 +2,9 @@
 <p><%= notice %></p>
 <nav class="navbar navbar-light bg-light">
 <%= form_with( model: Task.new , url: tasks_path, method: :get, local: true) do |form| %>
+
   <%= form.label :Name： %>
-  <%= form.text_field :task_name %>
+  <%= form.text_field :task_name, class: "form-control" %>
   <%= form.label :Status： %>
   <%= form.select :status, Task.statuses.keys, include_blank: '-' , selected: '-' %><br>
 

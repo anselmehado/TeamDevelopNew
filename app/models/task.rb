@@ -28,6 +28,10 @@ class Task < ApplicationRecord
 		@ids = Labelling.where(label_id: query).pluck(:task_id)
 		where(id: @ids)}
 
+
+    has_many :labellings, dependent: :destroy
+    has_many :labels, through: :labellings
+
   paginates_per 3
 
   belongs_to :user
