@@ -11,3 +11,9 @@
 
 
 User.create(name: "anselme", email: "anselme@yahoo.fr", admin: "true", password: "123456", password_confirmation: "123456")
+
+
+Label.create(title:"cop1")
+Label.create(title:"cop2")
+Label.create(title:"cop3")
+Label.create(title:"cop4")

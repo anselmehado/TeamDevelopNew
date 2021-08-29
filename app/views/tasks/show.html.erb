@@ -5,6 +5,9 @@
 <p>Status: <%= @task.status %></p>
 <p>Status: <%= @task.priority %></p>
 <p>Deadline: <%= @task.deadline %></p>
+<% @task.labels.pluck(:title).each do |t| %>
+  <%= t %>
+<% end %>
 
 
 <%= link_to 'Edit', edit_task_path(@task) %> |

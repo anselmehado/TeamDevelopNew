@@ -121,6 +121,6 @@ class TasksController < ApplicationController
     # Only allow a list of trusted parameters through.
     def task_params
       #params.require(:task).permit(:name, :content, :deadline, :status)
-      params.require(:task).permit(:task_name, :content, :deadline, :status, :task, :priority).merge(status: params[:task][:status].to_i, priority: params[:task][:priority].to_i)
+      params.require(:task).permit(:task_name, :content, :deadline, :status, :task, :priority, label_ids: []).merge(status: params[:task][:status].to_i, priority: params[:task][:priority].to_i)
     end
   end
