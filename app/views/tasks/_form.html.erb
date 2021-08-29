@@ -35,13 +35,11 @@
     <%= form.select :priority, options_for_select(Task.priorities), id: "status", class: "form-control" %>
   </div><br>
 
-  <div class="">
-    <% Label.all.each do |label| %>
-    <%= form.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
-    <%= form.label :label_ids, label.title, value: "#{label.id}" %>
-    <% end %>
+  <%= f.label :label, 'label' %>
+<%= f.select :label_id, Label.all.collect { |p| [ p.title, p.id] }, include_blank: true %>
 
-  </div>
+
+
 
   <%= form.submit value:"Register", class: "btn btn-primary submit"%>
 </div>

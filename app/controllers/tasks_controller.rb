@@ -5,8 +5,14 @@ class TasksController < ApplicationController
   def index
   all_tasks = Task.user_task_list(current_user.id)
 
-    if params[:label_id].present?
-      @tasks = all_tasks.label_task_search(params[:label_id]).page params[:page]
+    # if params[:label_id].present?
+    #   @tasks = all_tasks.label_task_search(params[:label_id]).page params[:page]
+
+
+      if params[:label_id].present?
+
+        @tasks = @tasks.joins(:labels).where(labels: { id: params[:label_id] }).page params[:page]
+
 
     elsif params[:task].present?
       if params[:task][:task_name].present? && params[:task][:status].present?
