@@ -22,25 +22,9 @@ class Task < ApplicationRecord
       where(user_id: query)
     end
 
-
-
-    # scope :label_task_search, -> (query) {
-		# @ids = Labelling.where(label_id: query).pluck(:task_id)
-		# where(id: @ids)}
-
-
-
-    scope :label_serch, -> (label_id) {
-    where(label_id: label_id)
-  }
-
-  def has_label?(label)
-    # results = self.labels.select do |l|
-    #   l.id == label
-    # end
-    results = self.labels.select { |l| l.id == label.id }
-    results.length > 0
-  end
+    scope :label_task_search, -> (query) {
+		@ids = Labelling.where(label_id: query).pluck(:task_id)
+		where(id: @ids)}
 
 
     has_many :labellings, dependent: :destroy
@@ -50,3 +34,24 @@ class Task < ApplicationRecord
 
   belongs_to :user
 	end
+
+
+
+
+
+
+
+
+
+
+    #   scope :label_serch, -> (label_id) {
+    #   where(label_id: label_id)
+    # }
+    #
+    # def has_label?(label)
+    #   # results = self.labels.select do |l|
+    #   #   l.id == label
+    #   # end
+    #   results = self.labels.select { |l| l.id == label.id }
+    #   results.length > 0
+    # end

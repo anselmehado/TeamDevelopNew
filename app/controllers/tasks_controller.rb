@@ -5,22 +5,20 @@ class TasksController < ApplicationController
   def index
   all_tasks = Task.user_task_list(current_user.id)
 
-    # if params[:label_id].present?
-    #   @tasks = all_tasks.label_task_search(params[:label_id]).page params[:page]
+      # if params[:label_id].present?
+      #
+      #   @tasks = @tasks.joins(:labels).where(labels: { id: params[:label_id] }).page params[:page]
 
-
-      if params[:label_id].present?
-
-        @tasks = @tasks.joins(:labels).where(labels: { id: params[:label_id] }).page params[:page]
-
-
-    elsif params[:task].present?
+    if params[:task].present?
       if params[:task][:task_name].present? && params[:task][:status].present?
         @tasks = all_tasks.task_name_fuzzy_search(params[:task][:task_name]).status_search(params[:task][:status]).page params[:page]
       elsif params[:task][:task_name].present?
         @tasks = all_tasks.task_name_fuzzy_search(params[:task][:task_name]).page params[:page]
       elsif params[:task][:status].present?
         @tasks = all_tasks.status_search(params[:task][:status]).page params[:page]
+
+      elsif params[:label_id].present?
+          @tasks = all_tasks.label_task_search(params[:label_id]).page params[:page]
 
       else
         @tasks = all_tasks.page(params[:page]).per(10)
