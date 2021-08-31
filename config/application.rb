@@ -22,6 +22,7 @@ module ProjetHard
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
+    config.exceptions_app = self.routes # Add this line
 
     config.time_zone = 'Lisbon'
     config.active_record.default_timezone = :local
@@ -41,7 +42,6 @@ end
 
 
 # code pour ne pas generer tro de fichier
-
 
 
 end

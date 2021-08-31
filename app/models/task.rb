@@ -18,17 +18,9 @@ class Task < ApplicationRecord
 
   scope :user_task_list, -> (query) {where(user_id: query)}
 
-    def user_task_list(query)
-      where(user_id: query)
-    end
 
-    scope :label_task_search, -> (query) {
-		@ids = Labelling.where(label_id: query).pluck(:task_id)
-		where(id: @ids)}
-
-
-    has_many :labellings, dependent: :destroy
-    has_many :labels, through: :labellings
+  has_many :labellings, dependent: :destroy
+  has_many :labels, through: :labellings
 
   paginates_per 3
 
@@ -39,6 +31,30 @@ class Task < ApplicationRecord
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  # def user_task_list(query)
+  #   where(user_id: query)
+  # end
+
+  # scope :label_task_search, -> (query) {
+  # @ids = Labelling.where(label_id: query).pluck(:task_id)
+  # where(id: @ids)}
 
 
 
