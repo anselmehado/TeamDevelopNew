@@ -17,3 +17,9 @@ Label.create(title:"cop1")
 Label.create(title:"cop2")
 Label.create(title:"cop3")
 Label.create(title:"cop4")
+
+
+# Label.create(title: "cop1", user_id: 2);
+# Label.create(title: "cop2", user_id: 2);
+# Label.create(title: "cop3", user_id: 2);
+# Label.create(title: "cop4", user_id: 2);
