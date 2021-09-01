@@ -1,14 +1,17 @@
 <h1>Tasks index</h1>
 <p><%= notice %></p>
-<nav class="navbar navbar-light bg-grey">
-<%= form_with url: tasks_path, method: :get, html: {class: "form-inline"} , local: true do |form| %>
-  <%= form.label :title, "Task Title:" %>
-  <%= form.text_field :title, placeholder: "Search...", class: "form-control mr-sm-2" %>
-  <%= form.label :status, "Status:" %>
-  <%= form.select :status, options_for_select([[''],['unstated'], ['inprogres'], ['complete']]), class: "form-control mr-sm-2"%>
-  <%= form.label :label_id, "Label" %>
-  <%= form.select :label_id, Label.all.collect { |label| [ label.title, label.id ] }, {include_blank: true}%>
-  <%= form.submit value: "search", class: "btn btn-outline-success my-2 my-sm-0", type: "submit" %>
+<nav class="navbar navbar-light bg-light">
+<%= form_with( model: Task.new , url: tasks_path, method: :get, local: true) do |form| %>
+
+  <%= form.label :Name： %>
+  <%= form.text_field :task_name, class: "form-control" %>
+  <%= form.label :Status： %>
+  <%= form.select :status, Task.statuses.keys, include_blank: '-' , selected: '-' %><br>
+
+  <%= form.label :label_id, "Only Label search:" %>
+  <%= form.select :label_id, Label.all.collect { |l| [ l.title, l.id ] }, include_blank: true %><br>
+
+  <%= form.submit 'search' %>
 <% end %>
 </nav>
 <br>
