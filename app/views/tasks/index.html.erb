@@ -9,9 +9,7 @@
   <%= form.select :status, Task.statuses.keys, include_blank: '-' , selected: '-' %><br>
 
   <%= form.label :label_id, "Only Label search:" %>
-
-  <%= form.select("label_id", current_user.labels.pluck(:title, :id), {include_blank: true})%><br>
-
+  <%= form.select :label_id, Label.all.collect { |l| [ l.title, l.id ] }, include_blank: true %><br>
 
   <%= form.submit 'search' %>
 <% end %>

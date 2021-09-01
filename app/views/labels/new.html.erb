@@ -1,6 +1,2 @@
 <h1>Labels#new</h1>
 <p>Find me in app/views/labels/new.html.erb</p>
-<% Label.all.each do |label| %>
-  <%= f.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
-  <%= label.name %>
-<% end %>
